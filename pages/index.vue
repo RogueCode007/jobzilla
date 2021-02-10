@@ -1,24 +1,26 @@
 <template>
-  <div class='container'>
+  <div class='px-4'>
     <NavBar />
     <Search />
-    <div class="wrapper">
+    <div class="">
       <div>
         <input type="checkbox" id="checkbox"    
         true-value="yes"
         false-value="no" 
         v-model="fulltime"
-        @change="checkJobType">
+        @change="checkJobType"
+        class="mt-2">
         <label for="checkbox">Full Time</label>
-        <p>Location</p>
+        <p class="mt-5 mb-3 gray-text text-base font-bold text-transform: uppercase">Location</p>
         <div>
           <input type="text" 
           v-model="location"
-          placeholder="City, state or country"
-          v-on:keyup.enter="changeLocation">
+          placeholder="City, state, zipcode or country"
+          v-on:keyup.enter="changeLocation"
+          class="location bg-white h-12 w-full rounded-md px-2 focus:outline-none focus:ring focus:border-blue-500">
         </div>
-        <div class="radio">
-          <div v-for="item in cities" :key="item.id">
+        <div class="radio mt-5">
+          <div v-for="item in cities" :key="item.id" class="my-2">
             <input type="radio" v-model="city" :value="item" @change="changeCity">
             <label>{{item}}</label>
           </div>
@@ -28,6 +30,7 @@
     <Error v-if="error" />
     <Loading v-if="loading" />
     <Job v-else :jobs="jobs" />
+    <p class="footer gray-text text-center text-sm font-semibold">obiwanpelosi @ DevChallenges.io</p>
   </div>
 </template>
 
@@ -87,16 +90,25 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  color: green
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+label{
+  color: #334680;
+  font-weight: 400;
+  font-size: 1.2em
 }
-a{
-  display: block;
+
+
+.gray-text{
+  color: #B9BDCF
 }
-.image{
-  min-height: 200px;
-  width: 300px;
-  background-size: cover;
-  background-repeat: no-repeat;
+input.location{
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05)
+}
+input.location::placeholder{
+  font-size: 12px; 
+}
+.footer{
+  font-family: 'Montserrat', sans-serif;
 }
 </style>

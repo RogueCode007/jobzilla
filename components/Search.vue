@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper">
-    <div class="input-box">
-      <input type="text" v-model="text" placeholder="Titles, companies, expertise or benefits">
-      <button @click="searchKeyword">Search</button>
+  <div class="wrapper py-8 px-5 mt-5 mb-5 rounded-lg">
+    <div class="border-2 border-solid rounded-lg py-3 px-2 bg-white flex justify-between items-center">
+      <input type="text" v-model="text" placeholder="Titles, companies, expertise or benefits" class="h-10 focus:outline-none">
+      <button @click="searchKeyword" class="bg-blue-500 text-white py-3 px-5 rounded-md">Search</button>
     </div>
   </div>
 </template>
@@ -23,6 +23,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .wrapper{
+    border: 1px solid black
+  }
 </style>

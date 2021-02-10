@@ -1,20 +1,22 @@
 <template>
-  <div>
-    <nuxt-link v-for="job in jobs" :key="job.id" :to="'/jobs/'+ job.id">
-      <div class="image" :style="{backgroundImage : 'url(' + job.company_logo + ')'}"></div>
+  <div class="mt-5">
+    <nuxt-link v-for="job in jobs" :key="job.id" :to="'/jobs/'+ job.id" class="flex space-x-3 items-start bg-white border border-solid rounded-md my-6 p-2">
+      <div class="border-2 border-solid rounded-md max-w-xs">
+        <img :src="job.company_logo" class="image mr-2 object-cover">
+      </div>
       <div class="details">
-        <p class="company-name">
+        <p class="font-bold text-xs mb-2">
           {{job.company}}
         </p>
-        <p class="job-title">
+        <p class="text-base font-normal">
           {{job.title}}
         </p>
-        <div class="link-footer">
-          <p class="type">{{job.type}}</p>
-          <div>
-            <p>{{job.location}}</p>
-            <p>{{job.created_at}}</p>
-            </div>
+        <div class="link-footer mt-3">
+          <p class=" type w-20 text-center py-2 font-bold text-xs border border-solid rounded-md">{{job.type}}</p>
+          <div class="flex mt-3 justify-between pr-3">
+            <p class="text-xs font-medium">{{job.location}}</p>
+            <p class="text-xs font-medium">{{job.created_at | textcut}}</p>
+          </div>
         </div>
       </div>
     </nuxt-link>
@@ -24,10 +26,33 @@
 
 <script>
 export default {
-  props:["jobs"]
+  props:["jobs"],
+  filters:{
+    textcut: function(value){
+      return value.slice(0, 10);
+    }
+  }
 }
 </script>
 
-<style>
-
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,400&display=swap');
+div{
+  font-family: 'Roboto', sans-serif;
+}
+a{
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  color: #334680
+}
+.image{
+  width: 90px;
+  height: 90px
+}
+.type{
+  border-color: #334680;
+}
+.link-footer div{
+  
+  color: #B9BDCF
+}
 </style>

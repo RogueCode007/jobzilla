@@ -1,19 +1,19 @@
 <template>
-  <div class="mt-5">
-    <nuxt-link v-for="job in jobs" :key="job.id" :to="'/jobs/'+ job.id" class="flex space-x-3 items-start bg-white border border-solid rounded-md my-6 p-2">
+  <div class="mt-5 md:mt-0">
+    <nuxt-link v-for="job in jobs" :key="job.id" :to="'/jobs/'+ job.id" class="flex space-x-3 items-start bg-white border border-solid rounded-md my-6 p-2 md:my-0 md:mb-6 ">
       <div class="border-2 border-solid rounded-md max-w-xs">
         <img :src="job.company_logo" class="image mr-2 object-cover">
       </div>
       <div class="details">
-        <p class="font-bold text-xs mb-2">
+        <p class="font-bold text-xs mb-2 md:mb-0">
           {{job.company}}
         </p>
         <p class="text-base font-normal">
           {{job.title}}
         </p>
-        <div class="link-footer mt-3">
-          <p class=" type w-20 text-center py-2 font-bold text-xs border border-solid rounded-md">{{job.type}}</p>
-          <div class="flex mt-3 justify-between pr-3">
+        <div class="link-footer mt-3 md:mt-1 md:flex md:justify-between">
+          <p class=" type w-20 text-center py-2 font-bold text-xs border border-solid rounded-md md:py-1 md:w-16">{{job.type}}</p>
+          <div class="icons flex mt-3 justify-between pr-3">
             <p class="text-xs font-medium">{{job.location}}</p>
             <p class="text-xs font-medium">{{job.created_at | textcut}}</p>
           </div>
@@ -54,5 +54,17 @@ a{
 .link-footer div{
   
   color: #B9BDCF
+}
+@media only screen and (min-width: 768px){
+  .link-footer{
+    min-width: 100%
+  }
+  div.details{
+    min-width: 75%
+  }
+  div.icons{
+    min-width: 50%
+  }
+ 
 }
 </style>

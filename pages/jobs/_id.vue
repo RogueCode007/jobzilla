@@ -1,7 +1,7 @@
 <template>
-  <div class="">
+  <div class="md:px-4 lg:px-10">
     <NavBar />
-    <div class="mt-4 px-2">
+    <div class="mt-4 px-2 md:flex md:justify-between space-x-5">
       <div class="ls">
         <nuxt-link to="/" class="text-blue-500 text-sm">Back to search</nuxt-link>
         <div class="apply my-6">
@@ -9,7 +9,7 @@
           <p class="how text-sm">{{job.how_to_apply}}</p>
         </div>
       </div>
-      <div class="rs mt-8">
+      <div class="rs mt-8 md:mt-0">
         <p class="title font-bold text-lg">{{job.title}} <span class=" type w-20 text-center py-2 font-bold text-xs border border-blue-800 rounded-md">{{job.type}}</span></p>
         <p class="time gray-text my-3">{{job.created_at | textcut}}</p>
         <div class="details my-5 flex items-center space-x-3">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <p class="footer gray-text text-center text-sm font-semibold">obiwanpelosi @ DevChallenges.io</p>
+    <p class="footer my-8 gray-text text-center text-sm font-semibold">obiwanpelosi @ DevChallenges.io</p>
   </div>
   
 </template>
@@ -46,9 +46,13 @@ export default {
 
     }
   },
-    filters:{
+
+  filters:{
     textcut: function(value){
-      return value.slice(0, 10);
+      if(value){
+        return value.slice(0, 10);
+      }
+      
     }
   },
 
@@ -57,7 +61,7 @@ export default {
       job: 'job'
     })
   },
-  mounted(){
+  created(){
     this.$store.dispatch("getSpecificJob", this.$route.params.id);
   },
 }
@@ -95,5 +99,18 @@ span.type{
 }
 .footer{
   font-family: 'Montserrat', sans-serif;
+}
+
+@media only screen and (min-width: 768px){
+  .ls{
+    max-width: 30%;
+    
+  }
+  p.how{
+    word-wrap: break-word
+  }
+  .rs{
+    width: 70%
+  }
 }
 </style>

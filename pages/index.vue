@@ -1,9 +1,9 @@
 <template>
-  <div class='px-4'>
+  <div class='big px-4 md:px-6 lg:px-10'>
     <NavBar />
     <Search />
-    <div class="">
-      <div>
+    <div class="md:flex md:justify-between md:items-start">
+      <div class="util">
         <input type="checkbox" id="checkbox"    
         true-value="yes"
         false-value="no" 
@@ -22,14 +22,14 @@
         <div class="radio mt-5">
           <div v-for="item in cities" :key="item.id" class="my-2">
             <input type="radio" v-model="city" :value="item" @change="changeCity">
-            <label>{{item}}</label>
+            <label class="text-sm">{{item}}</label>
           </div>
         </div>
       </div>
-    </div>
-    <Error v-if="error" />
-    <Loading v-if="loading" />
-    <Job v-else :jobs="jobs" />
+      <Error v-if="error" />
+      <Loading v-if="loading" />
+      <Job v-else :jobs="jobs" />
+    </div> 
     <p class="footer gray-text text-center text-sm font-semibold">obiwanpelosi @ DevChallenges.io</p>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
     this.$store.commit("changeLoadingVal");
     
   },
-  created(){
+  mounted(){
     this.$store.dispatch("defaultJobsFetch");
   }
 }
@@ -95,9 +95,10 @@ export default {
 label{
   color: #334680;
   font-weight: 400;
-  font-size: 1.2em
 }
-
+.big{
+  background-color: #F6F7FB;
+}
 
 .gray-text{
   color: #B9BDCF
@@ -110,5 +111,13 @@ input.location::placeholder{
 }
 .footer{
   font-family: 'Montserrat', sans-serif;
+}
+@media only screen and (min-width:768px){
+  .util{
+    min-width: 35%;
+  }
+}
+@media only screen and (min-width: 1024px){
+ 
 }
 </style>

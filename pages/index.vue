@@ -27,8 +27,11 @@
         </div>
       </div>
       <Error v-if="error" />
-      <Loading v-if="loading" />
-      <Job v-else :jobs="jobs" />
+      <div v-else>
+        <Loading v-if="loading" />
+        <Job v-else :jobs="jobs" />
+      </div>
+      
     </div> 
     <p class="footer gray-text text-center text-sm font-semibold">obiwanpelosi @ DevChallenges.io</p>
   </div>
@@ -53,6 +56,18 @@ export default {
       location: '',
       cities: ['Berlin', 'Amsterdam', 'London', 'New York'],
      
+    }
+  },
+  head(){
+    return {
+      title: "hubjobs",
+      meta: [
+        {
+          hid: 'Job search site',
+          name: 'Github Jobs search site',
+          content: 'Search jobs on github'
+        }
+      ]
     }
   },
   methods:{

@@ -26,9 +26,9 @@
           </div>
         </div>
       </div>
-      <Error v-if="error" />
+      <Error v-if="$fetchState.error" />
       <div v-else class="jobs">
-        <Loading v-if="loading" />
+        <Loading v-if="$fetchState.pending" />
         <Job v-bind:jobs ="jobs" v-else />
       </div>
       
@@ -94,12 +94,11 @@ export default {
       error: "error"
     })
   },
-  beforeCreate(){
-    this.$store.commit("changeLoadingVal");
-    
+  async fetch(){
+      this.$store.dispatch("defaultJobsFetch");
   },
   mounted(){
-    this.$store.dispatch("defaultJobsFetch");
+    this.$fetch();
   }
 }
 </script>

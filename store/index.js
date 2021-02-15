@@ -3,8 +3,7 @@ import axios from 'axios'
 export const state = () => ({
   jobs: [],
   job: {},
-  loading: true,
-  error: false
+
 })
 
 export const mutations = {
@@ -16,18 +15,11 @@ export const mutations = {
    state.job =  Object.assign({}, data);
     
   },
-  changeLoadingVal(state){
-    state.loading = !state.loading;
-    
-  },
   filterJobs(state){
      state.jobs = state.jobs.filter((job)=>{
       return job.type == "Full Time"
     });
   },
-  errored(state){
-    state.error = true
-  }
 
 }
 
@@ -74,12 +66,9 @@ export const actions = {
       const res = await axios.get('https://jobs.github.com/positions.json?location=new+york')
       const jobs = res.data;
       commit('getJobs', jobs)
-    }catch(err){
+    }catch(error){
       //commit("errored");
-      console.log(err)
-    }
-    finally{
-      commit("changeLoadingVal")
+      console.log(error)
     }
   },
 
@@ -91,38 +80,29 @@ export const actions = {
       }else{
         alert("no jobs in this location")
       }
-    }catch(err){
+    }catch(error){
      // commit("errored");
-      console.log(err)
+      console.log(error)
     }
-    finally{
-      commit("changeLoadingVal")
-    }
+
   },
   async getSpecificJob({commit},id){
     try{
       const res = await axios.get(`https://jobs.github.com/positions/${id}.json?markdown=true`)
       commit('getSpecificJob', res.data);
-    }catch(err){
+    }catch(error){
       //commit("errored");
-      console.log(err)
+      console.log(error)
     }
     
   },
   async keywordSearch({commit},data){
     try{
       const res = await axios.get(`https://jobs.github.com/positions.json?search=${data}`);
-    }catch(err){
+    }catch(error){
      // commit("errored");
-      console.log(err)
+      console.log(error)
     }
-    finally{
-      commit("changeLoadingVal")
-    } 
-  },
-  changeLoading({commit}){
-    commit("changeLoadingVal");
+  
   }
-
-
 }

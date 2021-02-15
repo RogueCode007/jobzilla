@@ -75,7 +75,7 @@ export const actions = {
       const jobs = res.data;
       commit('getJobs', jobs)
     }catch(err){
-      commit("errored");
+      //commit("errored");
       console.log(err)
     }
     finally{
@@ -92,7 +92,7 @@ export const actions = {
         alert("no jobs in this location")
       }
     }catch(err){
-      commit("errored");
+     // commit("errored");
       console.log(err)
     }
     finally{
@@ -104,7 +104,7 @@ export const actions = {
       const res = await axios.get(`https://jobs.github.com/positions/${id}.json?markdown=true`)
       commit('getSpecificJob', res.data);
     }catch(err){
-      commit("errored");
+      //commit("errored");
       console.log(err)
     }
     
@@ -113,7 +113,7 @@ export const actions = {
     try{
       const res = await axios.get(`https://jobs.github.com/positions.json?search=${data}`);
     }catch(err){
-      commit("errored");
+     // commit("errored");
       console.log(err)
     }
     finally{

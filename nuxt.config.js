@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxt-tuts',
+    title: 'hubjobs',
     htmlAttrs: {
       lang: 'en'
     },
@@ -44,5 +44,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  target: 'static',
+  router: {
+    base: '/hubjobsapp/'
   }
+  
 }

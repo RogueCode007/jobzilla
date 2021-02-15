@@ -28,8 +28,8 @@
       </div>
       <Error v-if="error" />
       <div v-else class="jobs">
-        <Loading v-show="loading" />
-        <Job  v-bind:jobs ="jobs" />
+        <Loading v-if="loading" />
+        <Job v-bind:jobs ="jobs" v-else />
       </div>
       
     </div> 

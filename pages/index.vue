@@ -27,9 +27,9 @@
         </div>
       </div>
       <Error v-if="error" />
-      <div v-else>
-        <Loading v-if="loading" />
-        <Job v-else :jobs="jobs" />
+      <div v-else class="jobs">
+        <Loading v-show="loading" />
+        <Job  v-bind:jobs ="jobs" />
       </div>
       
     </div> 
@@ -133,6 +133,8 @@ input.location::placeholder{
   }
 }
 @media only screen and (min-width: 1024px){
- 
+  .jobs{
+    min-width: 400px
+  }
 }
 </style>

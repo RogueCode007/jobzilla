@@ -63,7 +63,7 @@ export const actions = {
 
   async defaultJobsFetch({commit}){
     try{
-      const res = await axios.get('https://jobs.github.com/positions.json?location=new+york')
+      const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location=new+york')
       const jobs = res.data;
       commit('getJobs', jobs)
     }catch(error){
@@ -74,7 +74,7 @@ export const actions = {
 
   async cityJobsFetch({commit}, data){
     try{
-      const res = await axios.get(`https://jobs.github.com/positions.json?location=${data}`)
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location=${data}`)
       if(res.data.length > 0){
         commit('getJobs', res.data)
       }else{
@@ -88,7 +88,7 @@ export const actions = {
   },
   async getSpecificJob({commit},id){
     try{
-      const res = await axios.get(`https://jobs.github.com/positions/${id}.json?markdown=true`)
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json?markdown=true`)
       commit('getSpecificJob', res.data);
     }catch(error){
       //commit("errored");
@@ -98,7 +98,7 @@ export const actions = {
   },
   async keywordSearch({commit},data){
     try{
-      const res = await axios.get(`https://jobs.github.com/positions.json?search=${data}`);
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=${data}`);
     }catch(error){
      // commit("errored");
       console.log(error)

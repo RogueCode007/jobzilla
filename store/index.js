@@ -3,7 +3,8 @@ import axios from 'axios'
 export const state = () => ({
   jobs: [],
   job: {},
-
+  loading: true,
+  error: false
 })
 
 export const mutations = {
@@ -20,7 +21,12 @@ export const mutations = {
       return job.type == "Full Time"
     });
   },
-
+  changeLoading(state){
+    state.loading = !state.loading;
+  },
+  errored(state){
+    state.error = true
+  }
 }
 
 export const actions = {
@@ -63,12 +69,15 @@ export const actions = {
 
   async defaultJobsFetch({commit}){
     try{
-      const res = await axios.get('https://thingproxy.freeboard.io/fetch/https://jobs.github.com/positions.json?location=new+york')
+      const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location=new+york')
       const jobs = res.data;
       commit('getJobs', jobs)
     }catch(error){
-      //commit("errored");
+      commit("errored");
       console.log(error)
+    }
+    finally{
+      commit('changeLoading')
     }
   },
 
@@ -84,7 +93,9 @@ export const actions = {
      // commit("errored");
       console.log(error)
     }
-
+    finally{
+      commit('changeLoading')
+    }
   },
   async getSpecificJob({commit},id){
     try{
@@ -94,7 +105,9 @@ export const actions = {
       //commit("errored");
       console.log(error)
     }
-    
+    finally{
+      commit('changeLoading')
+    }
   },
   async keywordSearch({commit},data){
     try{
@@ -103,6 +116,8 @@ export const actions = {
      // commit("errored");
       console.log(error)
     }
-  
+    finally{
+      commit('changeLoading')
+    }
   }
 }

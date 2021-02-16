@@ -63,7 +63,7 @@ export const actions = {
 
   async defaultJobsFetch({commit}){
     try{
-      const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location=new+york')
+      const res = await axios.get('https://thingproxy.freeboard.io/fetch/https://jobs.github.com/positions.json?location=new+york')
       const jobs = res.data;
       commit('getJobs', jobs)
     }catch(error){

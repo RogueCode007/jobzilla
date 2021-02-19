@@ -69,13 +69,18 @@ export const actions = {
 
   async defaultJobsFetch({commit}){
     try{
-      const res = await axios.get('https://jobs.github.com/positions.json?location=new+york', {
-        headers:{
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
-      const jobs = res.data;
-      commit('getJobs', jobs)
+      // const res = await axios.get('https://jobs.github.com/positions.json?location=new+york', {
+      //   headers:{
+      //     'Access-Control-Allow-Origin': '*'
+      //   }
+      // })
+      const jobs ={};
+      const res = await fetch('https://jobs.github.com/positions.json?location=new+york')
+      .then(response => response.json())
+      .then(data =>  commit('getJobs', data))
+      //const jobs = res.data;
+      //commit('getJobs', jobs)
+
     }catch(error){
       commit("errored");
       console.log(error)

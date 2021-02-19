@@ -16,7 +16,7 @@ export default {
   }, 
   methods:{
     searchKeyword(){
-      this.$store.commit("changeLoadingVal");
+      this.$store.commit("changeLoading");
       this.$store.dispatch('keywordSearch', this.text)
     }
   }

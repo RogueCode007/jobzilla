@@ -73,12 +73,12 @@ export default {
   methods:{
     changeCity(){
       this.fulltime = "no"
-      this.$store.commit("changeLoadingVal");
+      this.$store.commit("changeLoading");
       this.$store.dispatch("cityJobsFetch", this.city);
     },
     changeLocation(){
       this.fulltime = "no"
-      this.$store.commit("changeLoadingVal");
+      this.$store.commit("changeLoading");
       this.$store.dispatch("cityJobsFetch", this.location);
     },
     checkJobType(){
@@ -94,10 +94,8 @@ export default {
       error: "error"
     })
   },
-  beforeCreate(){
-    this.$store.commit('changeLoading')
-  },
-  mounted(){
+  created(){
+    this.$store.commit('changeLoading');
     this.$store.dispatch("defaultJobsFetch");
   }
 }

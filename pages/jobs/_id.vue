@@ -3,7 +3,7 @@
     <NavBar />
     <div class="mt-4 px-2 md:flex md:justify-between space-x-5">
       <div class="ls">
-        <nuxt-link to="/" class="text-blue-500 text-sm">Back to search</nuxt-link>
+        <nuxt-link to="/"  class="text-blue-500 text-sm">Back to search</nuxt-link>
         <div class="apply my-6">
           <p class="gray-text mb-2 font-bold">HOW TO APPLY</p>
           <p class="how text-sm">{{job.how_to_apply}}</p>
@@ -52,8 +52,8 @@ export default {
       if(value){
         return value.slice(0, 10);
       }
-      
     }
+
   },
 
   computed:{
@@ -64,6 +64,11 @@ export default {
   created(){
     this.$store.dispatch("getSpecificJob", this.$route.params.id);
   },
+  methods:{
+    setLoading(){
+      this.$store.commit('changeLoading');
+    }
+  }
 }
 </script>
 

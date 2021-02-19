@@ -3,14 +3,13 @@ import axios from 'axios'
 export const state = () => ({
   jobs: [],
   job: {},
-  loading: true,
+  loading: false,
   error: false
 })
 
 export const mutations = {
   getJobs(state, data){
     state.jobs = [...data]
-    
   },
   getSpecificJob(state, data){
    state.job =  Object.assign({}, data);
@@ -23,6 +22,7 @@ export const mutations = {
   },
   changeLoading(state){
     state.loading = !state.loading;
+    console.log(state.loading)
   },
   errored(state){
     state.error = true
@@ -67,9 +67,9 @@ export const actions = {
   //   }
   // },
 
-  async defaultJobsFetch({commit}){
+   defaultJobsFetch({commit}){
     try{
-      await fetch('https://jobs.github.com/positions.json?location=new+york')
+       fetch('https://jobs.github.com/positions.json?location=new+york')
       .then(response => response.json())
       .then(data =>  commit('getJobs', data))
     }catch(error){
@@ -87,7 +87,7 @@ export const actions = {
       .then(response => response.json())
       .then(data => {
         if(data.length > 0){
-          commit('getJobs', res.data)
+          commit('getJobs', data)
         }else{
           alert("no jobs in this location")
         }
@@ -108,9 +108,6 @@ export const actions = {
     }catch(error){
     commit("errored");
       console.log(error)
-    }
-    finally{
-      commit('changeLoading')
     }
   },
   async keywordSearch({commit},data){

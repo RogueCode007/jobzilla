@@ -69,7 +69,9 @@ export const actions = {
 
   async defaultJobsFetch({commit}){
     try{
-      const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location=new+york')
+      const res = await axios.get('https://jobs.github.com/positions.json?location=new+york', {
+        'Access-Control-Allow-Origin': *
+      })
       const jobs = res.data;
       commit('getJobs', jobs)
     }catch(error){

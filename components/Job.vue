@@ -2,7 +2,7 @@
   <div class="mt-5 md:mt-0">
     <nuxt-link v-for="job in jobs" :key="job.id" :to="'/jobs/'+ job.id" class="flex space-x-3 items-start bg-white border border-solid rounded-md my-6 p-2 md:my-0 md:mb-6 ">
       <div class="border-2 border-solid rounded-md max-w-xs">
-        <img :src="job.company_logo" class="image mr-2 object-cover">
+        <img :src="job.company_logo" class="image mr-2 lg:mr-0 object-cover">
       </div>
       <div class="details">
         <p class="font-bold text-xs mb-2 md:mb-0">
